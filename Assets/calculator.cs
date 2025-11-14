@@ -11,26 +11,34 @@ public class calculator : MonoBehaviour
     private float liczba2;
     private float wynik;
     private bool dzia³anie;
+    private bool dodawanie;
+    private bool odejmowanie;
+    private bool mno¿enie;
+    private bool dzielenie;
     public int mno¿nik = 1;
 
     public void dodaj()
     {
         mno¿nik = 1;
+        dodawanie = true;
         dzia³anie = true;
     }
     public void odejmnij()
     {
-        mno¿nik = -1;
+        mno¿nik = 1;
+        odejmowanie = true;
         dzia³anie = true;
     }
-    public void mno¿enie()
+    public void mo¿enie()
     {
         mno¿nik = 1;
+        mno¿enie = true;
         dzia³anie = true;
     }
-    public void dzielenie()
+    public void dielenie()
     {
         mno¿nik = 1;
+        dzielenie = true;
         dzia³anie = true;
     }
     public void cyfra(float l)
@@ -52,7 +60,34 @@ public class calculator : MonoBehaviour
 
     public void Wynik()
     {
-        wynik = liczba1 + liczba2;
+        if(dodawanie)
+        {
+           wynik = liczba1 + liczba2 ;
+        }
+        if(odejmowanie)
+        {
+            wynik = liczba1 - liczba2 ;
+        }
+        if(mno¿enie)
+        {
+            wynik = liczba1 * liczba2 ;
+        }
+        if(dzielenie)
+        {
+           wynik = liczba1 / liczba2 ;
+        }
+        mno¿nik = 1;
+        dodawanie = odejmowanie = mno¿enie = dzielenie = false;
         pole1.text = wynik.ToString();
+        dzia³anie = false;
+    }
+    public void reset()
+    {
+        pole1.text = "";
+        dodawanie = odejmowanie = mno¿enie = dzielenie = false;
+        liczba1 = 0;
+        liczba2 = 0;
+        mno¿nik = 1;
+        dzia³anie = false;
     }
 }
